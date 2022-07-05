@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Resultado</title>
+        <link href="CSS/estilo.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="contenedor">
+         <p:graphicImage value="Img/Roberto.jpg"   style="width: 300px;align-items: center"/>
+        <br/>
+        <p:outputPanel class="table" id="restrictPanel" layout="block" style="width:440px;border:1px solid #666666;margin-bottom:20px">
+            <p:panel id="conpnl" header="DATOS DEL PAGO: " style="width:400px; font-family: Homer Simpson UI;">
+                <p:barcode value="Pago Exitoso!! Cedula:#{realizarPagoController.pago.idCliente}. Nombre: #{realizarPagoController.pago.nomCliente} #{realizarPagoController.pago.apellCliente}.Cantidad: #{realizarPagoController.pago.valorPago}. Fecha Pago: #{realizarPagoController.pago.fechaPago}"
+                                           type="qr" height="250px" width="250px" />
+           
+                <p:panel class="col" id="pn1" header="Cédula:">
+                    <h:outputText value="#{pagoMBean.pago.idCliente}" />
+                </p:panel>
+               
+                <p:panel class="col" id="pn2" header="Nombre:">
+                    <h:outputText value="#{pagoMBean.pago.nomCliente}" />
+                </p:panel>
+                <p:panel class="col" id="pn3" header="Apellido:">
+                    <h:outputText value="#{pagoMBean.pago.apellCliente}" />
+                </p:panel>
+                <p:panel class="col" id="pn4" header="Valor Pagado:">
+                    <h:outputText value="#{pagoMBean.pago.valorPago}" />
+                </p:panel>
+                
+                
+                <p:panel class="col" id="pn5" header="Fecha:">
+                    <h:outputText value="#{pagoMBean.pago.fechaPago}" />
+                </p:panel>                
+            </p:panel>
+        </p:outputPanel>
+        <h:form>
+            <p:commandButton class="btn" value="Volver Inicio" ajax="false"  validateClient="false" action="#{pagoMBean.volverPagos()}" />
+        
+        </h:form>
+       </div>      
+    </h:body> 
+</html>
+

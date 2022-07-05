@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Pagar</title>
+        <link href="CSS/estilo.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/pago.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <header>
+                <h1>Pasarela de Pago</h1>
+        </header>
+        <br/>
+        <f:view>
+            <h:form >
+                <p:panel header="GENERACIÓN DE PAGOS" class="table">
+                <p:messages />
+                <h:panelGrid columns="4" cellpadding="5" class="panelpago" style="cen">                    
+                    <p:outputLabel for="@next" value="Cédula:" />
+                    <p:inputText id="idCliente" value="#{pagoMBean.id_cliente}" >
+                    </p:inputText>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{rpagoMBean.id_cliente}" />
+                    
+                    <p:outputLabel for="@next" value="Nombre:"  />
+                    <p:inputText id="nomCliente" value="#{pagoMBean.nom_cliente}" />
+                    <p:message for="@previous" />
+                    <h:outputText value="#{pagoMBean.nom_cliente}" />
+                    
+                    <p:outputLabel for="@next" value="Apellido:"  />
+                    <p:inputText id="apellCliente" value="#{pagoMBean.apell_cliente}" />
+                    <p:message for="@previous" />
+                    <h:outputText value="#{pagoMBean.apell_cliente}" />
+                    
+                    <p:outputLabel for="@next" value="Email:"  />
+                    <p:inputText id="emailCliente" value="#{pagoMBean.email_cliente}" />
+                     <p:message for="@previous" />
+                     <h:outputText value="#{pagoMBean.email_cliente}" />
+                    
+                    <p:outputLabel for="@next" value="Número Tarjeta:"  />               
+                    <p:inputText id="numTar" value="#{pagoMBean.num_tar}">
+                        <p:ajax event='keyup' update="out" listener="#{pagoMBean.validarTarjeta()}" />
+                    </p:inputText>
+                    <h:graphicImage id="out" value="#{pagoMBean.imagenTarj}"/>
+                    <p:message for="@previous" />                  
+                    
+                    <p:outputLabel for="@next"  value="Csv Tarjeta:" />
+                    <p:inputText id="csvTar" value="#{pagoMBean.csv_tar}" />
+                    <p:message for="@previous" />
+                    <h:outputText value="#{pagoMBean.csv_tar}" />
+                                        
+                    <p:outputLabel for="@next" value="Expiracion Tarjeta:"  />
+                    <p:inputText id="expiracionTarj" value="#{pagoMBean.expiracion_tarj}"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{pagoMBean.expiracion_tarj}" />
+                    
+                    <p:outputLabel for="@next" value="Valor Pago:"  />
+                    <p:inputText id="valorPago" value="#{pagoMBean.valor_pago}" />
+                    <p:message for="@previous" />
+                    <h:outputText value="#{pagoMBean.valor_pago}" />
+                
+                </h:panelGrid>
+                <div class="captcha">
+                    <p:messages id="msg"/>
+                    <p:captcha id="captcha"></p:captcha>
+                </div>
+                
+                <br/>
+                <p:commandButton class="btn1" value="Enviar Pago" ajax="false"  validateClient="true" action="#{pagoMBean.save()}"/>
+            </p:panel>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
